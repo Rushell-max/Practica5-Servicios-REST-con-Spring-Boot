@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            const url = "http://localhost:8080/CategoryRestService/FindAll";
+            const url2 = "http://localhost:8080/CategoryRestService/FindById/1";
+            const url3 = "http://localhost:8080/CategoryRestService/Update";
+            $("#btn-Ajax").click(function () {
+                $.ajax({
+                    url: url2, success: function (result) {
+                        alert("AJAX SUCCESS");
+                        console.log(result);
+                    }
+                });
+            });
+            $("#btn-Get").click(function () {
+                $.get(url, function (data, status) {
+                    alert("GET SUCCESS");
+                    console.log(data)
+                });
+            });
+            $("#btn-Post").click(function () {
+                $.post(url3, null, 'json',
+                    {
+                        "description": "TEST_DESCRIPTION1",
+                        "id": 1,
+                        "name": "TEST_CATEGORY1",
+                        "whenCreated": "2021-06-24",
+                        "whenLastUpdated": "2021-06-24"
+                    },
+                    function () {
+                        alert("POST SUCCESS ");
+                    });
+            });
+        });
+    </script>
+
+    <title>Prueba Ajax</title>
+</head>
+
+<body>
+
+    <h1>Hola :D</h1>
+
+    <button id="btn-Ajax">Button Ajax</button>
+    <button id="btn-Get">Button Get</button>
+    <button id="btn-Post">Button Post</button>
+
+</body>
+
+</html>
